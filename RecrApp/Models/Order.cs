@@ -21,7 +21,27 @@ namespace RecrApp.Models
                 _items.Add(new OrderItem(product, quantity));
             }
         }
+        public Product GetItem(int i) { 
+        return _items[i].Product;
+        }
+        public int getItemQuantity(int i)
+        {
+            return _items[i].Quantity;
+        }
+        public void DecreaseItemAt(int i) 
+        {
+            _items[i].Quantity--;
+            if(_items[i].Quantity <= 0)
+            {
+                _items.RemoveAt(i);
+                
+            }
+           
+        }
 
+        public void RemoveItemAt(int i) {
+            _items.RemoveAt(i);
+        }
         public void RemoveItem(Product product)
         {
             var existingItem = _items.FirstOrDefault(item => item.Product.Name == product.Name);
@@ -46,7 +66,7 @@ namespace RecrApp.Models
     .OrderBy(p => p)
     .ToList();
             decimal total = products.Sum();
-            if (products.Count > 3)
+            if (products.Count > 2)
             {
                 total -= products[0] * 0.2M;
             }
@@ -60,14 +80,26 @@ namespace RecrApp.Models
             }
             return total;
         }
-        public void PrintOrder()
+        public void PrintFullOrderInfo()
         {
             decimal total = GetTotalDiscountedValue();
             for (int i = 0; i < _items.Count; i++)
             {
                 Console.WriteLine(i + 1 + ".\t" + _items[i].Product.Name + "\tx" + _items[i].Quantity + "\t" + _items[i].GetPrice().ToString("0.00") + " PLN");
             }
-            Console.WriteLine("Total:\t" + total.ToString("0.00") + (total!=GetTotalValue()? " PLN(Discounts Applied)" : " PLN"));
+            Console.WriteLine("Całkowita cena:\t" + total.ToString("0.00") + (total!=GetTotalValue()? " PLN(Zniżki uwzględnione)" : " PLN"));
+        }
+
+        public void ShowOrder()
+        {
+            for (int i = 0; i < _items.Count; i++)
+            {
+                Console.WriteLine(i + 1 + ".\t" + _items[i].Product.Name + "\tx" + _items[i].Quantity + "\t");
+            }
+        }
+        public int GetItemsCount()
+        {
+            return _items.Count;
         }
     }
 }
