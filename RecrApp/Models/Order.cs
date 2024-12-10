@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecrApp.Models
 {
-    internal class Order
+    public class Order
     {
         private List<OrderItem> _items = new List<OrderItem>();
         public void AddItem(Product product, int quantity)
