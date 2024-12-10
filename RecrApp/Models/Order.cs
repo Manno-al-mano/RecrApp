@@ -30,8 +30,16 @@ namespace RecrApp.Models
                 _items.Remove(existingItem);
             }
         }
-
         public decimal GetTotalValue()
+        {
+            decimal totalValue = 0;
+            foreach (var item in _items)
+            {
+                totalValue += item.GetPrice();
+            }
+            return totalValue;
+        }
+        public decimal GetTotalDiscountedValue()
         {
             var products = _items
     .SelectMany(item => Enumerable.Repeat(item.Product.Price, item.Quantity))
@@ -52,7 +60,14 @@ namespace RecrApp.Models
             }
             return total;
         }
+        public void PrintOrder()
+        {
+            decimal total = GetTotalDiscountedValue();
+            for (int i = 0; i < _items.Count; i++)
+            {
+                Console.WriteLine(i + 1 + ".\t" + _items[i].Product.Name + "\tx" + _items[i].Quantity + "\t" + _items[i].GetPrice().ToString("0.00") + " PLN");
+            }
+            Console.WriteLine("Total:\t" + total.ToString("0.00") + (total!=GetTotalValue()? " PLN(Discounts Applied)" : " PLN"));
+        }
     }
-
-
 }
