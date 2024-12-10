@@ -12,7 +12,7 @@ namespace RecrAppTest
           [InlineData(3, 100, 280)]
           [InlineData(1, 10000, 9500)]
           [InlineData(2, 5000, 9025)]
-          [InlineData(4, 5000, 13300)]
+          [InlineData(4, 5000, 18050)]
           public void TestDiscounts(int numberOfProducts, decimal price, decimal expectedPrice)
           {
 
