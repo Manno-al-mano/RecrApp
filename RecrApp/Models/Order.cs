@@ -40,11 +40,11 @@ namespace RecrApp.Models
             decimal total = products.Sum();
             if (products.Count > 3)
             {
-                total -= products[0] * 0.1M;
+                total -= products[0] * 0.2M;
             }
             else if (products.Count == 2)
             {
-                total -= products[0] * 0.2M;
+                total -= products[0] * 0.1M;
             }
             if (total > 5000)
             {
