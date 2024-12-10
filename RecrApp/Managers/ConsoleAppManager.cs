@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RecrApp.Managers
 {
-    internal class ConsoleAppManager
+    public class ConsoleAppManager
     {
         private Order _order;
         private List<Product> _products= new List<Product>();
