@@ -1,4 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using RecrApp.Managers;
+
 namespace RecrApp
 {
 
@@ -7,7 +9,8 @@ namespace RecrApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            ConsoleAppManager consoleAppManager = new ConsoleAppManager();
+            consoleAppManager.Start();
         }
     }
 }
